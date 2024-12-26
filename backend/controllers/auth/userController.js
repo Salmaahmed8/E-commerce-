@@ -1,12 +1,13 @@
 import asyncHandler from "express-async-handler";
-import User from "../../models/auth/UserModel.js";
-import generateToken from "../../helpers/generateToken.js";
+import User from "./backend/models/auth/UserModel.js";
+import generateToken from "./backend/helpers/generateToken.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import Token from "../../models/auth/Token.js";
+import Token from "./backend/models/auth/Token.js";
 import crypto from "node:crypto";
-import hashToken from "../../helpers/hashToken.js";
-import sendEmail from "../../helpers/sendEmail.js";
+import hashToken from "./backend/helpers/hashToken.js";
+import sendEmail from "./backend/helpers/sendEmail.js";
+
 
 export const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
