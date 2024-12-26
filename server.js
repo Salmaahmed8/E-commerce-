@@ -4,6 +4,7 @@ import cors from "cors";
 import connect from "./backend/db/connect.js";
 import cookieParser from "cookie-parser";
 import fs from "node:fs";
+import errorHandler from "./backend/helpers/errorhandler.js"
 
 dotenv.config();
 
@@ -21,8 +22,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
 app.use(cookieParser());
 
+//error handler middleware
+app.use(errorHandler)
+
 //routes
-const routeFiles = fs.readFileSync("./backend/routes");
+const routeFiles = fs.readdirSync(`./backend/routes`);
 
 routeFiles.forEach((file) => {
     // use dynamic import
